@@ -6,6 +6,7 @@ export const Background = styled.div`
     flex-direction: column;
     background: url(${({src})=> (src ? `../images/misc/${src}.jpg` :
      '../images/misc/home-bg.jpg')}) top left / cover no-repeat;
+     border-bottom: 8px solid #222;
 `
 
 export const Frame = styled.div`
@@ -15,7 +16,6 @@ export const Frame = styled.div`
     padding: 18px 0;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 8px solid #333;
 
     a {
         display: flex;
