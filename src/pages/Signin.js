@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"
+import { useContext, useState } from "react"
 import {useHistory} from 'react-router-dom'
 import { Form } from "../components"
 import { FooterContainer } from "../containers/Footer"
@@ -12,12 +12,6 @@ const Signin = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
-
-    useEffect(() => {
-        if(firebase.auth().currentUser){
-            history.push(ROUTES.BROWSE)
-        }
-    }, [])
 
     const handleSignIn = (event) => {
         event.preventDefault()
@@ -43,7 +37,7 @@ const Signin = () => {
                     {error && <Form.Error>{error}</Form.Error>}
                     <Form.Base onSubmit={handleSignIn}>
                         <Form.Input 
-                            placeholder="email Address"
+                            placeholder="Email Address"
                             value={email}
                             onChange={({target})=> setEmail(target.value)}
                         />
