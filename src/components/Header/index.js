@@ -52,7 +52,7 @@ Header.Search = function HeaderSearch({searchTerm, setSearchTerm, ...restProps})
         if(searchActive){
             input.focus()
         }
-    }, [searchActive])
+    }, [searchActive, input])
 
     return (
         <Search {...restProps}>
