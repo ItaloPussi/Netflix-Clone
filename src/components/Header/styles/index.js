@@ -4,11 +4,24 @@ import {Link as ReactRouterLink} from 'react-router-dom'
 export const Background = styled.div`
     display: flex;
     flex-direction: column;
-    background: url(${({src})=> (src ? `../images/misc/${src}.jpg` :
-     '../images/misc/home-bg.jpg')}) top left / cover no-repeat;
+    position: relative;
+    z-index: 1;
 
-     @media (max-width: 1100px) {
-         ${( { dontShowOnSmallViewPort}) => dontShowOnSmallViewPort && 'background: none;'}
+     &::before {
+        position:absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url(${({src})=> (src ? `../images/misc/${src}.jpg` :
+        '../images/misc/home-bg.jpg')}) top left / cover no-repeat;
+        z-index: -1;
+        opacity: ${({darker}) => darker ? '.55' : '1'};
+
+        @media (max-width: 1100px) {
+            ${( { dontShowOnSmallViewPort}) => dontShowOnSmallViewPort && 'background: none;'}
+        }
      }
 `
 
@@ -49,6 +62,7 @@ export const Link = styled.p`
         margin-right: 0;
     }
 `
+
 
 export const Picture = styled.button`
     background: url(${({src}) => src});
@@ -96,6 +110,65 @@ export const Dropdown = styled.div`
         margin-bottom: 0;
         margin-top: 0;
     }
+`
+
+export const Search = styled.div`
+    display: flex;
+    align-items: center;
+
+    svg {
+        color: white;
+        cursor: pointer;
+    }
+
+    @media (max-width: 700px) {
+        display: none;
+    }
+` 
+
+export const PlayButton = styled.button`
+    box-shadow: 0 0.6vw 1vw -0.4vw rgba(0, 0, 0, 0.35);
+    background-color: #e6e6e6;
+    color: #000;
+    border-width: 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    max-width: 130px;
+    font-size: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: background-color 1 ease;
+    font-weight: bold;
+    
+    &:hover {
+        background-color: #ff1e1e;
+        color: white;
+    }
+`
+export const SearchIcon = styled.button`
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+
+    img {
+        filter: brightness(0) invert(1);
+        width: 16px;
+    }
+`
+
+export const SearchInput = styled.input`
+    background-color: #44444459;
+    color: white;
+    border: 1px solid white;
+    transition: width 0.5s;
+    height: 30px;
+    outline: none;
+    font-size: 14px;
+    margin-left: ${({active}) => (active === true ? '10px' : '0')};
+    padding: ${({active}) => (active === true ? '0 10px' : '0')};
+    opacity: ${({active}) => (active === true ? '1' : '0')};
+    width: ${({active}) => (active === true ? '200px' : '0px')};
 `
 
 export const Profile = styled.div`

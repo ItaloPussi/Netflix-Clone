@@ -8,6 +8,7 @@ import logo from '../logo.svg'
 export function BrowserContainer({slides}){
     const [profile, setProfile] = useState({})
     const [loading, setLoading] = useState(true)
+    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(()=>{
         setTimeout(()=>{
@@ -21,7 +22,7 @@ export function BrowserContainer({slides}){
     return  profile.displayName ? (
         <>
             {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
-            <Header src="joker1" dontShowOnSmallViewPort={true}>
+            <Header src="joker1" dontShowOnSmallViewPort={true} darker={true}>
                 <Header.Frame>
                     <Header.Group>
                         <Header.Logo to={ROUTES.HOME} src={logo} alt="Netflix" />
@@ -29,6 +30,7 @@ export function BrowserContainer({slides}){
                         <Header.TextLink>Films</Header.TextLink>
                     </Header.Group>
                     <Header.Group>
+                        <Header.Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
                         <Header.Profile>
                             <Header.Picture src={user.photoURL} />
                             <Header.Dropdown>
@@ -51,6 +53,7 @@ export function BrowserContainer({slides}){
                     <Header.Text>
                         Forever alone in a crowd, failed comedian Arthur Fleck seeks connection as he walks ther streets of Gotham City. Arthur wears two masks -- the one he paints for his day job as a clown, and the guise he projects in a futile attempt to feel like he's part of the world around him.
                     </Header.Text>
+                    <Header.PlayButton>Play</Header.PlayButton>
                 </Header.Feature>
             </Header>
         </>
